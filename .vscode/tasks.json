@@ -1,0 +1,42 @@
+{
+    "version": "2.0.0",
+    "inputs": [
+        {
+            "id": "host",
+            "type": "pickString",
+            "description": "Proxmox Host",
+            "options": [
+                "shack-pve-001",
+                "shack-pve-002",
+                "shack-pve-003"
+            ]
+        },
+        {
+            "id": "name",
+            "type": "promptString",
+            "description": "Container name"
+        },
+        {
+            "id": "vmid",
+            "type": "promptString",
+            "description": "VMID"
+        },
+        {
+            "id": "ip",
+            "type": "promptString",
+            "description": "IP address"
+        }
+    ],
+    "tasks": [
+        {
+            "label": "Create Proxmox LXC",
+            "type": "shell",
+            "command": "./run-playbook.sh",
+            "args": [
+                "playbook-proxmox-container-create.yml",
+                "--extra-vars",
+                "proxmox_host=${input:host} proxmox_container_name=${input:name} proxmox_container_vmid=${input:vmid} proxmox_container_ip=${input:ip}"
+            ]
+        }
+    ]
+}
