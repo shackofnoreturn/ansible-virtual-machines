@@ -1,0 +1,8 @@
+proxmox_container_name: shack-pi-dns
+proxmox_container_memory: 512
+proxmox_container_swap: 256
+proxmox_container_cores: 1
+
+proxmox_container_tags:
+  - dns
+  - infrastructure

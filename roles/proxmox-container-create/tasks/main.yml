@@ -1,0 +1,67 @@
+---
+- name: Create Proxmox LXC container
+  community.general.proxmox:
+    api_host: "{{ ansible_host }}"
+    api_user: "{{ proxmox_api_user }}"
+    api_password: "{{ proxmox_api_password }}"
+
+    node: "{{ ansible_hostname }}"
+
+    vmid: "{{ proxmox_container_vmid }}"
+    hostname: "{{ proxmox_container_name }}"
+
+    ostemplate: >-
+      {{ proxmox_container_template_storage }}:vztmpl/{{ proxmox_template_name }}
+
+    storage: "{{ proxmox_container_storage }}"
+
+    disk: >-
+      {{ proxmox_container_storage }}:{{ proxmox_container_rootfs_size }}
+
+    cores: "{{ proxmox_container_cores }}"
+    cpuunits: "{{ proxmox_container_cpuunits }}"
+
+    memory: "{{ proxmox_container_memory }}"
+    swap: "{{ proxmox_container_swap }}"
+
+    netif:
+      net0: >-
+        name=eth0,
+        bridge={{ proxmox_container_bridge }},
+        ip={{ proxmox_container_ip }}/{{ proxmox_container_prefix }},
+        gw={{ proxmox_container_gateway }}
+
+    nameserver: "{{ proxmox_container_nameserver | default(omit) }}"
+    searchdomain: "{{ proxmox_container_searchdomain | default(omit) }}"
+
+    features: "{{ proxmox_container_features }}"
+
+    unprivileged: "{{ proxmox_container_unprivileged }}"
+
+    firewall: "{{ proxmox_container_firewall }}"
+
+    protection: "{{ proxmox_container_protection }}"
+
+    onboot: "{{ proxmox_container_onboot }}"
+
+    startup: "{{ proxmox_container_startup | default(omit) }}"
+
+    description: "{{ proxmox_container_description | default(omit) }}"
+
+    password: "{{ proxmox_container_password | default(omit) }}"
+
+    pubkey: "{{ proxmox_container_ssh_key | default(omit) }}"
+
+    tags: "{{ proxmox_container_tags | default(omit) }}"
+
+    state: started
+
+    timeout: "{{ proxmox_container_timeout }}"
+
+
+- name: Wait for container SSH
+  ansible.builtin.wait_for:
+    host: "{{ proxmox_container_ip }}"
+    port: 22
+    delay: 5
+    timeout: 600
