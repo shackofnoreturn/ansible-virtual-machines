@@ -1,0 +1,6 @@
+---
+- name: Proxmox Container Creation
+  hosts: "{{ proxmox_host }}"
+  gather_facts: false
+  roles:
+  - proxmox-container-create
