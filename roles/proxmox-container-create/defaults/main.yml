@@ -34,7 +34,7 @@ proxmox_template_name:
 # ============================================================================
 
 proxmox_container_storage: local-lvm
-proxmox_container_rootfs_size: 8
+proxmox_container_disk_size: 8G
 
 
 # ============================================================================

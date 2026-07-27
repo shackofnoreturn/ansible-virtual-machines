@@ -13,8 +13,9 @@
     ostemplate: >-
       {{ proxmox_container_template_storage }}:vztmpl/{{ proxmox_template_name }}
 
-    disk: >-
-      {{ proxmox_container_storage }}:{{ proxmox_container_rootfs_size }}
+    disk:
+      storage: "{{ proxmox_container_storage }}"
+      size: "{{ proxmox_container_disk_size }}"
 
     cores: "{{ proxmox_container_cores }}"
     cpuunits: "{{ proxmox_container_cpuunits }}"
