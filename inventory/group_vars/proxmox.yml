@@ -1,2 +1,2 @@
-proxmox_api_user: root@pam
-proxmox_api_password: "{{ vault_proxmox_password }}"
+ansible_user: "{{ proxmox_api_user }}"
+ansible_password: "{{ proxmox_api_password }}"
