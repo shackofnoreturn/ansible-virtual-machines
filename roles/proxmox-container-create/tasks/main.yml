@@ -5,7 +5,7 @@
     api_user: "{{ proxmox_api_user }}"
     api_password: "{{ proxmox_api_password }}"
 
-    node: "{{ ansible_hostname }}"
+    node: "{{ proxmox_host }}"
 
     vmid: "{{ proxmox_container_vmid }}"
     hostname: "{{ proxmox_container_name }}"
