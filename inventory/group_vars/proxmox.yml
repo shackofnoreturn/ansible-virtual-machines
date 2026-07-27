@@ -1,2 +1,0 @@
-proxmox_api_user: semaphore@pam
-proxmox_api_password: "{{ vault_proxmox_password }}"
