@@ -1,7 +1,7 @@
 ---
 - name: Create Proxmox LXC container
   community.general.proxmox:
-    api_host: "{{ ansible_host }}"
+    api_host: "{{ proxmox_host }}"
     api_user: "{{ proxmox_api_user }}"
     api_password: "{{ proxmox_api_password }}"
 
