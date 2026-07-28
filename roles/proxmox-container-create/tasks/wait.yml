@@ -1,0 +1,20 @@
+---
+# ============================================================
+# Wait until SSH is available
+# ============================================================
+
+
+- name: Wait for LXC SSH
+  ansible.builtin.wait_for:
+
+    host:
+      "{{ proxmox_container_ip }}"
+
+    port:
+      22
+
+    delay:
+      5
+
+    timeout:
+      "{{ proxmox_container_ssh_timeout }}"

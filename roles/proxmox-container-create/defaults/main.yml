@@ -1,121 +1,178 @@
 ---
-# ============================================================================
-# REQUIRED
-# ============================================================================
+# ============================================================
+# Proxmox API authentication
+# ============================================================
+
+# Password authentication
+proxmox_api_user: "root@pam"
+proxmox_api_password: ""
+
+# Token authentication (preferred)
+proxmox_api_token_id:
+proxmox_api_token_secret:
+
+proxmox_validate_certs: false
+
+
+# ============================================================
+# Target Proxmox node
+# ============================================================
+
+proxmox_host: ""
+
+
+# ============================================================
+# Container identity
+# ============================================================
+
+proxmox_container_vmid:
+proxmox_container_hostname:
+
+proxmox_container_description: ""
+
+proxmox_container_tags: ""
+
+
+# ============================================================
+# Template
+# ============================================================
 
 # Example:
-# proxmox_container_vmid: 200
-# proxmox_container_name: nginx
-# proxmox_container_ip: 10.0.0.200
-
-
-# ============================================================================
-# PROXMOX API
-# ============================================================================
-
-# Supplied globally/group_vars normally
-# proxmox_api_user:
-# proxmox_api_password:
-
-
-# ============================================================================
-# TEMPLATE
-# ============================================================================
+# local:vztmpl/debian-12-standard_12.7-1_amd64.tar.zst
 
 proxmox_container_template_storage: local
 
-# Example:
-# debian-12-standard_12.7-1_amd64.tar.zst
-proxmox_template_name:
+proxmox_container_template:
 
 
-# ============================================================================
-# STORAGE
-# ============================================================================
+# ============================================================
+# Storage
+# ============================================================
 
 proxmox_container_storage: local-lvm
-proxmox_container_disk_size: 8G
+
+# GB
+proxmox_container_disk_size: 8
 
 
-# ============================================================================
+# ============================================================
 # CPU
-# ============================================================================
+# ============================================================
 
 proxmox_container_cores: 2
+
+# CPU weight
 proxmox_container_cpuunits: 1024
 
+# Optional CPU limit
+proxmox_container_cpulimit:
 
-# ============================================================================
-# MEMORY
-# ============================================================================
 
-proxmox_container_memory: 1024
+# ============================================================
+# Memory
+# ============================================================
+
+# MB
+proxmox_container_memory: 2048
+
+# MB
 proxmox_container_swap: 512
 
 
-# ============================================================================
-# NETWORK
-# ============================================================================
-
-proxmox_container_bridge: vmbr0
-proxmox_container_gateway: 10.0.0.1
-proxmox_container_prefix: 24
-
-proxmox_container_nameserver: 10.0.0.1
-proxmox_container_searchdomain:
-
-
-# ============================================================================
-# SECURITY / FEATURES
-# ============================================================================
-
-proxmox_container_unprivileged: true
-
-proxmox_container_features:
-  - keyctl=1
-  - nesting=1
-
-
-# ============================================================================
-# STARTUP
-# ============================================================================
-
-proxmox_container_onboot: true
-
-proxmox_container_startup:
-  order: 3
-  up: 30
-
-
-# ============================================================================
-# IDENTITY
-# ============================================================================
-
-proxmox_container_description:
+# ============================================================
+# Authentication inside container
+# ============================================================
 
 proxmox_container_password:
 
 proxmox_container_ssh_key:
 
 
-# ============================================================================
-# TAGGING
-# ============================================================================
+# ============================================================
+# Network
+# ============================================================
 
-proxmox_container_tags:
+proxmox_container_bridge: vmbr0
+
+proxmox_container_ip:
+
+proxmox_container_prefix: 24
+
+proxmox_container_gateway:
+
+proxmox_container_mac:
+
+proxmox_container_vlan:
 
 
-# ============================================================================
-# FIREWALL
-# ============================================================================
+# ============================================================
+# DNS
+# ============================================================
+
+proxmox_container_nameserver:
+
+proxmox_container_searchdomain:
+
+
+# ============================================================
+# Features
+# ============================================================
+
+# Privileged container by default
+proxmox_container_unprivileged: false
+
+proxmox_container_features:
+  nesting: true
+  keyctl: true
+
+
+# ============================================================
+# Security
+# ============================================================
 
 proxmox_container_firewall: true
 
-
-# ============================================================================
-# OPTIONS
-# ============================================================================
-
 proxmox_container_protection: false
 
+
+# ============================================================
+# Boot
+# ============================================================
+
+proxmox_container_onboot: true
+
+proxmox_container_startup:
+
+
+# ============================================================
+# Mount points
+# ============================================================
+
+# Example:
+#
+# proxmox_container_mounts:
+#   - mp: mp0
+#     volume: local-lvm:vm-100-disk-1
+#     size: 10
+
+proxmox_container_mounts: []
+
+
+# ============================================================
+# State
+# ============================================================
+
+# present | started | stopped | absent
+
+proxmox_container_state: started
+
+
+# ============================================================
+# Timeouts
+# ============================================================
+
 proxmox_container_timeout: 300
+
+proxmox_container_wait_for_ssh: true
+
+proxmox_container_ssh_timeout: 600

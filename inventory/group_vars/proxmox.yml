@@ -1,2 +1,5 @@
-ansible_user: "{{ proxmox_api_user }}"
-ansible_password: "{{ proxmox_api_password }}"
+# inventory/group_vars/proxmox.yml
+
+proxmox_api_user: root@pam
+proxmox_api_token_id:
+proxmox_api_token_secret:

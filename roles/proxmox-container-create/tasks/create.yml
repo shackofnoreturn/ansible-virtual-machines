@@ -1,0 +1,117 @@
+---
+# ============================================================
+# Create container
+# ============================================================
+
+
+- name: Create Proxmox LXC container
+  community.proxmox.proxmox:
+
+    api_host: "{{ proxmox_host }}"
+
+    api_user: "{{ proxmox_api_user }}"
+
+    api_password: "{{ proxmox_api_password }}"
+
+    validate_certs: "{{ proxmox_validate_certs }}"
+
+
+    node: "{{ proxmox_host }}"
+
+
+    vmid: "{{ proxmox_container_vmid }}"
+
+
+    hostname: "{{ proxmox_container_hostname }}"
+
+
+    ostemplate: >-
+      {{ proxmox_container_template_storage }}:vztmpl/{{ proxmox_container_template }}
+
+
+    storage: "{{ proxmox_container_storage }}"
+
+    disk_volume:
+      size: "{{ proxmox_container_disk_size }}"
+
+
+    cores: "{{ proxmox_container_cores }}"
+
+    cpuunits: "{{ proxmox_container_cpuunits }}"
+
+
+    memory: "{{ proxmox_container_memory }}"
+
+    swap: "{{ proxmox_container_swap }}"
+
+
+    password:
+      "{{ proxmox_container_password }}"
+    when:
+      - proxmox_container_password is defined
+
+
+    ssh_public_keys:
+      "{{ proxmox_container_ssh_key }}"
+    when:
+      - proxmox_container_ssh_key is defined
+
+
+    netif:
+
+      net0:
+        name: eth0
+
+        bridge: "{{ proxmox_container_bridge }}"
+
+        ip: >-
+          {{ proxmox_container_ip }}/{{ proxmox_container_prefix }}
+
+        gw: "{{ proxmox_container_gateway }}"
+
+
+    nameserver:
+      "{{ proxmox_container_nameserver }}"
+    when:
+      - proxmox_container_nameserver is defined
+
+
+    searchdomain:
+      "{{ proxmox_container_searchdomain }}"
+    when:
+      - proxmox_container_searchdomain is defined
+
+
+    features:
+      "{{ proxmox_container_features }}"
+
+
+    unprivileged:
+      "{{ proxmox_container_unprivileged }}"
+
+
+    firewall:
+      "{{ proxmox_container_firewall }}"
+
+
+    protection:
+      "{{ proxmox_container_protection }}"
+
+
+    onboot:
+      "{{ proxmox_container_onboot }}"
+
+
+    description:
+      "{{ proxmox_container_description }}"
+
+
+    tags:
+      "{{ proxmox_container_tags }}"
+
+
+    state: present
+
+
+    timeout:
+      "{{ proxmox_container_timeout }}"

@@ -1,0 +1,30 @@
+---
+# ============================================================
+# Start / stop container
+# ============================================================
+
+
+- name: Set container state
+  community.proxmox.proxmox:
+
+    api_host: "{{ proxmox_host }}"
+
+    api_user: "{{ proxmox_api_user }}"
+
+    api_password: "{{ proxmox_api_password }}"
+
+
+    node:
+      "{{ proxmox_host }}"
+
+
+    vmid:
+      "{{ proxmox_container_vmid }}"
+
+
+    state:
+      "{{ proxmox_container_state }}"
+
+
+    timeout:
+      "{{ proxmox_container_timeout }}"

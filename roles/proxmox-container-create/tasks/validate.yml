@@ -1,0 +1,79 @@
+---
+# ============================================================
+# Validation
+# Fail early instead of failing halfway through Proxmox API calls
+# ============================================================
+
+
+- name: Validate required Proxmox variables
+  ansible.builtin.assert:
+
+    that:
+
+      - proxmox_host | length > 0
+
+      - proxmox_container_vmid is defined
+      - proxmox_container_vmid | int > 0
+
+      - proxmox_container_hostname | length > 0
+
+      - proxmox_container_template | length > 0
+
+      - proxmox_container_ip | length > 0
+
+
+    fail_msg: |
+      Missing required Proxmox LXC variables.
+
+      Required:
+        proxmox_host
+        proxmox_container_vmid
+        proxmox_container_hostname
+        proxmox_container_template
+        proxmox_container_ip
+
+
+- name: Validate state value
+  ansible.builtin.assert:
+
+    that:
+
+      - proxmox_container_state in
+        [
+          "present",
+          "started",
+          "stopped",
+          "absent"
+        ]
+
+    fail_msg: |
+      Invalid proxmox_container_state.
+
+      Allowed:
+        present
+        started
+        stopped
+        absent
+
+
+- name: Validate network configuration
+  ansible.builtin.assert:
+
+    that:
+
+      - proxmox_container_bridge | length > 0
+      - proxmox_container_prefix | int > 0
+
+    fail_msg: |
+      Invalid network configuration.
+
+
+- name: Display container summary
+  ansible.builtin.debug:
+
+    msg:
+      - "Creating LXC {{ proxmox_container_hostname }}"
+      - "VMID: {{ proxmox_container_vmid }}"
+      - "Node: {{ proxmox_host }}"
+      - "IP: {{ proxmox_container_ip }}"
+      - "Template: {{ proxmox_container_template }}"
