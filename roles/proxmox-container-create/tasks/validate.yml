@@ -9,7 +9,6 @@
   ansible.builtin.assert:
 
     that:
-
       - proxmox_api_host | length > 0
 
       - proxmox_container_vmid is defined
@@ -37,7 +36,6 @@
   ansible.builtin.assert:
 
     that:
-
       - proxmox_container_state in
         [
           "present",
@@ -60,7 +58,6 @@
   ansible.builtin.assert:
 
     that:
-
       - proxmox_container_bridge | length > 0
       - proxmox_container_prefix | int > 0
 
@@ -70,7 +67,6 @@
 
 - name: Display container summary
   ansible.builtin.debug:
-
     msg:
       - "Creating LXC {{ proxmox_container_hostname }}"
       - "VMID: {{ proxmox_container_vmid }}"

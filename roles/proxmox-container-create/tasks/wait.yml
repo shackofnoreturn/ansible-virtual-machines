@@ -9,12 +9,9 @@
 
     host:
       "{{ proxmox_container_ip }}"
-
     port:
       22
-
     delay:
       5
-
     timeout:
       "{{ proxmox_container_ssh_timeout }}"
