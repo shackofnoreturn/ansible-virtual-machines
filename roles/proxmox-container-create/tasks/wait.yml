@@ -14,4 +14,4 @@
     delay:
       5
     timeout:
-      "{{ proxmox_container_ssh_timeout }}"
+      "{{ proxmox_container_timeout }}"
