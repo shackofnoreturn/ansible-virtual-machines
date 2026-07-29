@@ -55,8 +55,7 @@ proxmox_container_searchdomain: ""
 
 
 # Features
-proxmox_container_features:
-  - nesting=1
+proxmox_container_features: []
 
 
 # Security
@@ -80,7 +79,7 @@ proxmox_container_tags:
 
 
 # Optional hooks
-proxmox_container_hookscript: ""
+proxmox_container_hookscript: null
 
 
 # Additional mounts

@@ -58,7 +58,7 @@
 
 
     # Container options
-    features: "{{ proxmox_container_features }}"
+    features: "{{ proxmox_container_features | default(omit) }}"
     unprivileged: "{{ proxmox_container_unprivileged }}"
 
 
@@ -78,7 +78,10 @@
 
 
     # Advanced
-    hookscript: "{{ proxmox_container_hookscript | default(omit) }}"
+    hookscript: >-
+      {{ proxmox_container_hookscript
+        if proxmox_container_hookscript | default('') | length > 0
+        else omit }}
     mounts: "{{ proxmox_container_mounts if proxmox_container_mounts | length > 0 else omit }}"
 
 
