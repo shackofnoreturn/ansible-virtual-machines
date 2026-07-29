@@ -45,11 +45,7 @@
 
     # Network
     netif:
-      net0: >-
-        name=eth0,
-        bridge={{ proxmox_container_bridge }},
-        ip={{ proxmox_container_ip }}/{{ proxmox_container_prefix }},
-        gw={{ proxmox_container_gateway }}
+      net0: "name=eth0,bridge={{ proxmox_container_bridge }},ip={{ proxmox_container_ip }}/{{ proxmox_container_prefix }},gw={{ proxmox_container_gateway }}"
 
 
     # DNS
