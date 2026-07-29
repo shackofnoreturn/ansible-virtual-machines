@@ -1,117 +1,105 @@
 ---
-# ============================================================
-# Create container
-# ============================================================
-
-
 - name: Create Proxmox LXC container
   community.proxmox.proxmox:
 
+    # API connection
     api_host: "{{ proxmox_api_host }}"
-
+    api_port: "{{ proxmox_api_port }}"
     api_user: "{{ proxmox_api_user }}"
-
     api_password: "{{ proxmox_api_password }}"
-
     validate_certs: "{{ proxmox_validate_certs }}"
 
 
-    node: "{{ proxmox_api_host }}"
+    # Placement
+    node: "{{ proxmox_node }}"
 
 
+    # Identity
     vmid: "{{ proxmox_container_vmid }}"
-
-
     hostname: "{{ proxmox_container_hostname }}"
 
 
+    # Template
     ostemplate: >-
       {{ proxmox_container_template_storage }}:vztmpl/{{ proxmox_container_template }}
 
 
-    storage: "{{ proxmox_container_storage }}"
-
+    # Root filesystem
     disk_volume:
+      storage: "{{ proxmox_container_storage }}"
       size: "{{ proxmox_container_disk_size }}"
 
 
+    # Resources
     cores: "{{ proxmox_container_cores }}"
-
+    cpus: "{{ proxmox_container_cpus }}"
     cpuunits: "{{ proxmox_container_cpuunits }}"
 
-
     memory: "{{ proxmox_container_memory }}"
-
     swap: "{{ proxmox_container_swap }}"
 
 
-    password:
-      "{{ proxmox_container_password }}"
-    when:
-      - proxmox_container_password is defined
+    # Authentication
+    password: "{{ proxmox_container_password | default(omit) }}"
+
+    pubkey: "{{ proxmox_container_ssh_key | default(omit) }}"
 
 
-    ssh_public_keys:
-      "{{ proxmox_container_ssh_key }}"
-    when:
-      - proxmox_container_ssh_key is defined
-
-
+    # Network
     netif:
-
-      net0:
-        name: eth0
-
-        bridge: "{{ proxmox_container_bridge }}"
-
-        ip: >-
-          {{ proxmox_container_ip }}/{{ proxmox_container_prefix }}
-
-        gw: "{{ proxmox_container_gateway }}"
+      net0: >-
+        name=eth0,
+        bridge={{ proxmox_container_bridge }},
+        ip={{ proxmox_container_ip }}/{{ proxmox_container_prefix }},
+        gw={{ proxmox_container_gateway }}
 
 
-    nameserver:
-      "{{ proxmox_container_nameserver }}"
-    when:
-      - proxmox_container_nameserver is defined
+    # DNS
+    nameserver: "{{ proxmox_container_nameserver | default(omit) }}"
+
+    searchdomain: "{{ proxmox_container_searchdomain | default(omit) }}"
 
 
-    searchdomain:
-      "{{ proxmox_container_searchdomain }}"
-    when:
-      - proxmox_container_searchdomain is defined
+    # Container options
+    features: "{{ proxmox_container_features }}"
+
+    unprivileged: "{{ proxmox_container_unprivileged }}"
+
+    firewall: "{{ proxmox_container_firewall }}"
+
+    protection: "{{ proxmox_container_protection }}"
 
 
-    features:
-      "{{ proxmox_container_features }}"
+    # Startup
+    onboot: "{{ proxmox_container_onboot }}"
+
+    startup: "{{ proxmox_container_startup }}"
 
 
-    unprivileged:
-      "{{ proxmox_container_unprivileged }}"
+    # Metadata
+    description: "{{ proxmox_container_description | default(omit) }}"
+
+    tags: "{{ proxmox_container_tags | default(omit) }}"
 
 
-    firewall:
-      "{{ proxmox_container_firewall }}"
+    # OS
+    ostype: "{{ proxmox_container_ostype }}"
+
+    timezone: "{{ proxmox_container_timezone }}"
 
 
-    protection:
-      "{{ proxmox_container_protection }}"
+    # Advanced
+    hookscript: "{{ proxmox_container_hookscript | default(omit) }}"
+
+    mounts: "{{ proxmox_container_mounts | default(omit) }}"
 
 
-    onboot:
-      "{{ proxmox_container_onboot }}"
+    # Behaviour
+    force: "{{ proxmox_container_force }}"
 
-
-    description:
-      "{{ proxmox_container_description }}"
-
-
-    tags:
-      "{{ proxmox_container_tags }}"
-
+    update: "{{ proxmox_container_update }}"
 
     state: present
 
-
-    timeout:
-      "{{ proxmox_container_timeout }}"
+    timeout: "{{ proxmox_container_timeout }}"
+  

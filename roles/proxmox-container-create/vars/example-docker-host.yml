@@ -1,9 +1,0 @@
-proxmox_container_name: docker-001
-proxmox_container_features:
-  - nesting=1
-  - keyctl=1
-
-proxmox_container_unprivileged: false
-
-proxmox_container_memory: 8192
-proxmox_container_cores: 4
