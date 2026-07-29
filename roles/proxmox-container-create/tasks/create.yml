@@ -81,7 +81,7 @@
 
     # Advanced
     hookscript: "{{ proxmox_container_hookscript | default(omit) }}"
-    mounts: "{{ proxmox_container_mounts | default(omit) }}"
+    mounts: "{{ proxmox_container_mounts if proxmox_container_mounts | length > 0 else omit }}"
 
 
     # Behaviour

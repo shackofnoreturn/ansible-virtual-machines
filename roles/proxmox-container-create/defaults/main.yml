@@ -86,13 +86,11 @@ proxmox_container_hookscript: ""
 
 
 # Additional mounts
-proxmox_container_mounts: []
+proxmox_container_mounts: {}
 
 
 # Lifecycle
 proxmox_container_state: started
-proxmox_container_force: false
-proxmox_container_update: true
 
 
 # Timeout
