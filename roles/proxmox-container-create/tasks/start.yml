@@ -7,22 +7,20 @@
 - name: Set container state
   community.proxmox.proxmox:
 
+    # API connection
     api_host: "{{ proxmox_api_host }}"
+    api_port: "{{ proxmox_api_port }}"
     api_user: "{{ proxmox_api_user }}"
     api_password: "{{ proxmox_api_password }}"
+    validate_certs: "{{ proxmox_validate_certs }}"
 
 
-    node:
-      "{{ proxmox_api_host }}"
+    # LXC container
+    node: "{{ proxmox_node }}"
+    vmid: "{{ proxmox_container_vmid }}"
 
+    # State
+    state: "{{ proxmox_container_state }}"
 
-    vmid:
-      "{{ proxmox_container_vmid }}"
-
-
-    state:
-      "{{ proxmox_container_state }}"
-
-
-    timeout:
-      "{{ proxmox_container_timeout }}"
+    # Wait
+    timeout: "{{ proxmox_container_timeout }}"
