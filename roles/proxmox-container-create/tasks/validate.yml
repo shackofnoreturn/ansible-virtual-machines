@@ -10,7 +10,7 @@
 
     that:
 
-      - proxmox_host | length > 0
+      - proxmox_api_host | length > 0
 
       - proxmox_container_vmid is defined
       - proxmox_container_vmid | int > 0
@@ -26,7 +26,7 @@
       Missing required Proxmox LXC variables.
 
       Required:
-        proxmox_host
+        proxmox_api_host
         proxmox_container_vmid
         proxmox_container_hostname
         proxmox_container_template
@@ -74,6 +74,6 @@
     msg:
       - "Creating LXC {{ proxmox_container_hostname }}"
       - "VMID: {{ proxmox_container_vmid }}"
-      - "Node: {{ proxmox_host }}"
+      - "Node: {{ proxmox_api_host }}"
       - "IP: {{ proxmox_container_ip }}"
       - "Template: {{ proxmox_container_template }}"

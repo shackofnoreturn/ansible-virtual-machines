@@ -35,7 +35,7 @@
             "args": [
                 "playbook-proxmox-container-create.yml",
                 "--extra-vars",
-                "proxmox_host=${input:host} proxmox_container_name=${input:name} proxmox_container_vmid=${input:vmid} proxmox_container_ip=${input:ip}"
+                "proxmox_api_host=${input:host} proxmox_container_name=${input:name} proxmox_container_vmid=${input:vmid} proxmox_container_ip=${input:ip}"
             ]
         }
     ]
