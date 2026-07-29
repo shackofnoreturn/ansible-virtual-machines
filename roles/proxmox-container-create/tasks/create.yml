@@ -80,7 +80,7 @@
     # Advanced
     hookscript: >-
       {{ proxmox_container_hookscript
-        if proxmox_container_hookscript | default('') | length > 0
+        if proxmox_container_hookscript | default('', true) | length > 0
         else omit }}
     mounts: "{{ proxmox_container_mounts if proxmox_container_mounts | length > 0 else omit }}"
 
