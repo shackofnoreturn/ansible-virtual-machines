@@ -34,14 +34,12 @@
     cores: "{{ proxmox_container_cores }}"
     cpus: "{{ proxmox_container_cpus }}"
     cpuunits: "{{ proxmox_container_cpuunits }}"
-
     memory: "{{ proxmox_container_memory }}"
     swap: "{{ proxmox_container_swap }}"
 
 
     # Authentication
     password: "{{ proxmox_container_password | default(omit) }}"
-
     pubkey: "{{ proxmox_container_ssh_key | default(omit) }}"
 
 
@@ -56,50 +54,37 @@
 
     # DNS
     nameserver: "{{ proxmox_container_nameserver | default(omit) }}"
-
     searchdomain: "{{ proxmox_container_searchdomain | default(omit) }}"
 
 
     # Container options
     features: "{{ proxmox_container_features }}"
-
     unprivileged: "{{ proxmox_container_unprivileged }}"
-
     firewall: "{{ proxmox_container_firewall }}"
-
     protection: "{{ proxmox_container_protection }}"
 
 
     # Startup
     onboot: "{{ proxmox_container_onboot }}"
-
     startup: "{{ proxmox_container_startup }}"
 
 
     # Metadata
     description: "{{ proxmox_container_description | default(omit) }}"
-
     tags: "{{ proxmox_container_tags | default(omit) }}"
 
 
     # OS
     ostype: "{{ proxmox_container_ostype }}"
-
     timezone: "{{ proxmox_container_timezone }}"
 
 
     # Advanced
     hookscript: "{{ proxmox_container_hookscript | default(omit) }}"
-
     mounts: "{{ proxmox_container_mounts | default(omit) }}"
 
 
     # Behaviour
-    force: "{{ proxmox_container_force }}"
-
-    update: "{{ proxmox_container_update }}"
-
     state: present
-
     timeout: "{{ proxmox_container_timeout }}"
   
