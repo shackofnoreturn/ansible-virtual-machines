@@ -61,8 +61,6 @@ proxmox_container_features:
 
 # Security
 proxmox_container_unprivileged: true
-proxmox_container_firewall: true
-proxmox_container_protection: false
 
 
 # Boot

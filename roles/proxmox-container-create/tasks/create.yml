@@ -60,8 +60,6 @@
     # Container options
     features: "{{ proxmox_container_features }}"
     unprivileged: "{{ proxmox_container_unprivileged }}"
-    firewall: "{{ proxmox_container_firewall }}"
-    protection: "{{ proxmox_container_protection }}"
 
 
     # Startup
