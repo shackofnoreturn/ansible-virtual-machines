@@ -20,4 +20,6 @@ ansible-playbook -i inventory playbook-proxmox-container-create.yml -e @vars/pro
 
 
 ## Todo
+- Stopping LXC Containers
+- Starting LXC Containers
 - Removing LXC Containers
