@@ -33,7 +33,7 @@
     # Resources
     cores: "{{ proxmox_container_cores }}"
     cpus: "{{ proxmox_container_cpus }}"
-    cpuunits: "{{ proxmox_container_cpuunits }}"
+    cpuunits: "{{ proxmox_container_cpuunits | default(omit) }}"
     memory: "{{ proxmox_container_memory }}"
     swap: "{{ proxmox_container_swap }}"
 

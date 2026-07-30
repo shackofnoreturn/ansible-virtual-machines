@@ -32,7 +32,7 @@ proxmox_container_disk_size: 8
 # CPU
 proxmox_container_cores: 2
 proxmox_container_cpus: 1
-proxmox_container_cpuunits: 1024
+proxmox_container_cpuunits: ""
 
 
 # Memory
