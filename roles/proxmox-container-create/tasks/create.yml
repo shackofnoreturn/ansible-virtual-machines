@@ -7,6 +7,8 @@
     api_port: "{{ proxmox_api_port }}"
     api_user: "{{ proxmox_api_user }}"
     api_password: "{{ proxmox_api_password }}"
+    # api_token_id: "{{ proxmox_api_token_id }}"
+    # api_token_secret: "{{ proxmox_api_token_secret }}"
     validate_certs: "{{ proxmox_validate_certs }}"
 
 
