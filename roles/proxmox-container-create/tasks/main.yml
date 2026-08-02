@@ -1,22 +1,15 @@
 ---
-# ============================================================
-# Proxmox LXC creation entry point
-# ============================================================
-
 - name: Validate Proxmox container variables
   ansible.builtin.include_tasks:
     file: validate.yml
-
 
 - name: Create Proxmox container
   ansible.builtin.include_tasks:
     file: create.yml
 
-
 - name: Configure container state
   ansible.builtin.include_tasks:
     file: start.yml
-
 
 - name: Wait for container availability
   ansible.builtin.include_tasks:
