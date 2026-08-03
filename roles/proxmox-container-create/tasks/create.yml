@@ -86,4 +86,8 @@
     # Behaviour
     state: present
     timeout: "{{ proxmox_container_timeout }}"
+
+- name: Pause for container to be created
+  pause:
+    seconds: 5
   
